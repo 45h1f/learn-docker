@@ -1,0 +1,22 @@
+# BAD EXAMPLE - Large, inefficient, insecure
+FROM ubuntu:latest
+
+# Install Python and pip
+RUN apt-get update
+RUN apt-get install -y python3
+RUN apt-get install -y python3-pip
+RUN apt-get install -y curl
+RUN apt-get install -y vim
+RUN apt-get install -y git
+
+# Copy everything (including unnecessary files)
+COPY . /app
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies
+RUN pip3 install -r requirements.txt
+
+# Run as root (security risk)
+CMD ["python3", "app.py"]

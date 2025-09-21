@@ -1,0 +1,56 @@
+# .dockerignore - Exclude unnecessary files from build context
+# Version control
+.git
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+*.md
+docs/
+
+# Build artifacts
+*.pyc
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+venv/
+env/
+.env
+
+# Logs
+*.log
+logs/
+
+# Test files
+tests/
+test_*.py
+*_test.py
+
+# Development files
+docker-compose.yml
+docker-compose.*.yml
+Dockerfile.*
+
+# Large files not needed in container
+*.tar.gz
+*.zip
+*.rar
+
+# Temporary files
+tmp/
+temp/
+*.tmp

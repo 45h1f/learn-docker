@@ -1,0 +1,24 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: verify-signed-images
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: require-cosign-signature
+      match:
+        any:
+          - resources:
+              kinds: [Pod, Deployment, StatefulSet, DaemonSet, Job, CronJob]
+      verifyImages:
+        - imageReferences:
+            - "docker.io/<your-org>/*"
+          attestors:
+            - entries:
+                - keys:
+                    publicKeys: |
+                      # Replace with your cosign public key
+                      -----BEGIN PUBLIC KEY-----
+                      YOUR-COSIGN-PUB-KEY
+                      -----END PUBLIC KEY-----
